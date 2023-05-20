@@ -67,7 +67,7 @@ class HumanoidReqHandler {
 		return headers;
 	}
 	
-	async sendRequest(url, method=undefined, data=undefined, headers=undefined, dataType="form") {
+	async sendRequest(url, method=undefined, data=undefined, headers=undefined, dataType="form", config = {}) {
 		// Sanitize parameters
 		let parsedURL = this._parseUrl(url);
 		let isSessionChallenged = false;
@@ -81,6 +81,11 @@ class HumanoidReqHandler {
 		currConfig.method = method;
 		currConfig = data !== undefined ? this._getConfForMethod(method, currConfig, data, dataType) : currConfig;
 		
+		currConfig = {
+			...currConfig,
+			...config,
+		};
+
 		// Send the request
 		let res = await rpn(url, currConfig);
 		// Decompress Brotli content-type if returned (Unsupported natively by `request`)
