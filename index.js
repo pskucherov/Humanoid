@@ -36,8 +36,8 @@ class Humanoid extends HumanoidReqHandler {
 		}
 	}
 	
-	async get(url, queryString=undefined, headers=undefined, config = {}) {
-		return await this.sendRequest(url, "GET", queryString, headers, undefined, config)
+	async get(url, queryString=undefined, headers=undefined, dataType=undefined, config = {}) {
+		return await this.sendRequest(url, "GET", queryString, headers, dataType, config)
 	}
 	
 	async post(url, postBody=undefined, headers=undefined, dataType=undefined, config = {}) {
