@@ -36,15 +36,15 @@ class Humanoid extends HumanoidReqHandler {
 		}
 	}
 	
-	async get(url, queryString=undefined, headers=undefined, dataType=undefined, config = {}) {
+	async get(url, queryString=undefined, headers=undefined, dataType="form", config = {}) {
 		return await this.sendRequest(url, "GET", queryString, headers, dataType, config)
 	}
 	
-	async post(url, postBody=undefined, headers=undefined, dataType=undefined, config = {}) {
+	async post(url, postBody=undefined, headers=undefined, dataType="form", config = {}) {
 		return await this.sendRequest(url, "POST", postBody, headers, dataType, config)
 	}
 	
-	async sendRequest(url, method=undefined, data=undefined, headers=undefined, dataType=undefined, config = {}) {
+	async sendRequest(url, method=undefined, data=undefined, headers=undefined, dataType="form", config = {}) {
 		let response = await super.sendRequest(url, method, data, headers, dataType, config);
 		if (response.isSessionChallenged) {
 			if (this.autoBypass) {
